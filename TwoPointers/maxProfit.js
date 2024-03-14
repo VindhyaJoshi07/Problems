@@ -1,4 +1,4 @@
-
+// O(n) | O(1)
 
 const maxProfit = (prices) => {
     let buy = prices[0];
@@ -16,4 +16,32 @@ const maxProfit = (prices) => {
         }
     }
     return profit;
+}
+
+// ---------------------- Approach - 2 --------------------------
+// O(n2) | O(n)
+
+const maxProfit1 = (prices) => {
+    //difference between max from left and min from right
+    let mxprof = 0;
+    for(let i = 0; i < prices.length; i++) {
+        for(let j = i+1; j < prices.length; j++) {
+            mxprof = Math.max(mxprof, prices[j] - prices[i]);
+        }
+    }
+    return mxprof;
+}
+
+// ------------------------ Approach - 3 ---------------------------
+// O(n) | O(1)
+
+const maxProfit2 = (prices) => {
+    let maxProf = 0;
+    let minVal = Infinity;
+    for(let i = 0; i < prices.length; i++) {
+        minVal = Math.min(minVal, prices[i]);
+        maxProf = Math.max(mxprof, prices[i] - minVal);
+    }
+
+    return maxProf;
 }
